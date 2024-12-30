@@ -732,6 +732,16 @@ impl<R> ImageDecode<R> where R: Read + Seek {
         }
     }
 
+    pub fn alpha_mode(&self, is_decode_alpha: bool){
+        unsafe{
+            if is_decode_alpha{
+                (*self.raw).WMP.wmiSCP.uAlphaMode=2;
+            }else{
+                (*self.raw).WMP.wmiSCP.uAlphaMode=0;
+            }
+        }
+    }
+
     ///
     /// Return the pixel format of the decoded image.
     /// This is just a big enum; you're responsible for knowing how to
